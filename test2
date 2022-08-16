@@ -22,7 +22,8 @@ class PC_memory:
 
 # 2 задание
 class PC_advanced(PC_memory):
-	def __init__(self, pc_id, memory_total, memory_used, ld_avg_1m, ld_avg_15m, memory_percent=None):
+	def __init__(self, pc_id, memory_total, memory_used, ld_avg_1m,
+	ld_avg_15m, memory_percent=None):
         	super().__init__(pc_id, memory_total, memory_used, memory_percent)
         	self.ld_avg_1m = ld_avg_1m
         	self.ld_avg_15m = ld_avg_15m
