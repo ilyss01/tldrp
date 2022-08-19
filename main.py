@@ -10,6 +10,9 @@ parser = argparse.ArgumentParser()
 parser.add_argument('parsed_file',help='Name of the file', type=str)
 args = parser.parse_args()
 
+# file extension
+#print(args.parsed_file.split('.')[1])
+
 with open(args.parsed_file, 'r') as file:
     for line in file:
         # skipping empty lines
