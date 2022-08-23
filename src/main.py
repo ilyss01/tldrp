@@ -2,47 +2,42 @@ import argparse
 
 # TODO: print multiline args
 def multiline_args(line):
-    openinig_brackets = 0
-    closing_brackets = 0
-    while (openinig_brackets != closing_brackets):
-        line = file.readline()
-        if '(' in line:
-            openinig_brackets += 1
-        if ')' in line:
-            closing_brackets += 1
+
+# TODO: add module parse
+def parse_modules(file):
 
 # kind of modularity, to add new programming language you just need to add new if statement
 def match_file_type(extension):
     # 6 variables 
     """Returns tuple of func_lengh, func_decl, pub_func, priv_func, class_decl, another_class_decl"""
     if extension == 'py':
-        # python 
+        # python language
         return (3, 'def', 'def', 'def', 'class', 'class')
     elif extension == 'rs':
-        # rust 
+        # rust language
         return (2, 'fn', 'pub', 'fn', 'trait', 'impl')
     else:
+        # break for not supported filetypes 
         print('File type is not supported')
         exit()
 
 def main():
     # parse arguments
     parser = argparse.ArgumentParser(description='Prints out functions and classes of the source code')
-    parser.add_argument('parsed_file', help='Source code of the program',  default=None)
+    parser.add_argument('-parsed_file', help='Source code of the program', default=None)
     args = parser.parse_args()
-
-    print(args)
     
-    # check for arguments
+    # check for any args
     if args.parsed_file == None:
         exit()
 
     # filetype variables
     try:
         func_length, func_decl, pub_func, private_func, class_decl, \
-    another_class_decl = match_file_type(args.parsed_file.split('.')[1])
+        another_class_decl = match_file_type(args.parsed_file.split('.')[1])
     except IndexError:
-        print('Not supported file extension')
+        # catch for files with no dot in their name
+        print('File type is not supported')
         exit()
 
     # parsing file and printing functions and classes
