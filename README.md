@@ -1,3 +1,5 @@
+# Project is dead, though idea is interesting. May return to it
+
 tldrp
 ---
 
