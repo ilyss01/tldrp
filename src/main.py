@@ -2,30 +2,29 @@ import argparse
 
 
 # TODO: print multiline args
-def multiline_args(line):
+def parse_multiline_args(line):
     pass
 
 
 # TODO: add module parse
-def parse_modules(file):
+def parse_modules(file,
+                  hi_mom,
+                  thing):
     pass
 
 
 def get_lang_keywords(extension):
-    #
-    # define filetype by extension, should return tuple of keywords,
-    # not something abstract
-    #
-    """Returns tuple of keywords"""
+    """Returns tuple of keywords by extension"""
     # python lang
-    if extension in ('py', 'pyi', 'pyc', 'pyd', 'pyw', 'pyz', 'pyo'):
+    if extension in ('py', 'pyi', 'pyc', 'pyd',
+                     'pyw', 'pyz', 'pyo'):
         return ('def', 'class')
     # rust lang
     elif extension in ('rs', 'rlib'):
         return ('fn', 'pub', 'trait', 'impl')
     # go lang
     elif extension in ('go'):
-        return ()
+        return ('package', 'func', 'type')
     # TODO: c lang
     else:
         # break for not supported filetypes
@@ -51,7 +50,7 @@ def main():
     try:
         lang_keywords = get_lang_keywords(args.parsed_file.split('.')[1])
     except IndexError:
-        # catch for files w/o dot in their name
+        # catch for files w/o extension
         print('File type is not supported')
         exit()
 
@@ -63,4 +62,10 @@ def main():
                 file.read(1)
             # found keyword
             elif line.split()[0] in lang_keywords:
-                print(line, end='')
+                # FIXME infinite loop
+                if '(' in line and ')' not in line:
+                    while ')' not in line:
+                        print(line, end='')
+                else:
+                    # end='' bc strings have \n byte
+                    print(line, end='')
