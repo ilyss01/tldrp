@@ -63,5 +63,4 @@ def main():
                 file.read(1)
             # found keyword
             elif line.split()[0] in lang_keywords:
-                # case for multiline args
                 print(line, end='')
